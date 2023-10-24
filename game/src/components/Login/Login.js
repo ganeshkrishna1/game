@@ -34,9 +34,9 @@ function Login() {
         .then((res) => {
           if (res.data.Status === 'Success') {
             // Navigate to the "game" page
-            navigate('/game');
+            navigate('/home');
           } else {
-            navigate('/Signup');
+            navigate('/register');
             alert('Invalid Credentials. Please Register.');
           }
         })
@@ -87,7 +87,7 @@ function Login() {
               </div>
 
               <div className='col-4'>
-                <Link to='/signup' type='button' id='signupLink' className='btn btn-primary rounded-0'>
+                <Link to='/register' type='button' id='signupLink' className='btn btn-primary rounded-0'>
                   Sign up
                 </Link>
               </div>
