@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {useNavigate } from 'react-router-dom';
+import './HomePage.css'
 
 function HomePage() {
   const navigate = useNavigate();
@@ -17,19 +18,23 @@ function HomePage() {
   }
 
   return (
-    <div className="home-page">
-      <h1>Welcome to the Math Game for Kids</h1>
-      <button className="start-button" onClick={handleStartGame}>
-        Start
-      </button>
-      {showDifficultyDialog && (
-        <div className="difficulty-dialog">
-          <h2>Select Difficulty:</h2>
-          <button onClick={() => handleDifficultySelect('easy')}>Easy</button>
-          <button onClick={() => handleDifficultySelect('medium')}>Medium</button>
-          <button onClick={() => handleDifficultySelect('hard')}>Hard</button>
-        </div>
-      )}
+    <div className="home-page-main">
+      <div className="home-page">
+        <h1>Welcome to the Math Game for Kids</h1>
+        <button className="start-button" onClick={handleStartGame}>
+          Enter into the game
+        </button>
+        {showDifficultyDialog && (
+          <div className="difficulty-dialog">
+            <h2>Select Difficulty</h2>
+            <div className='difficulty-buttons'>
+              <button className='diff-btn easy-btn' onClick={() => handleDifficultySelect('easy')}>Easy</button>
+              <button className='diff-btn medium-btn' onClick={() => handleDifficultySelect('medium')}>Medium</button>
+              <button className='diff-btn hard-btn' onClick={() => handleDifficultySelect('hard')}>Hard</button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
