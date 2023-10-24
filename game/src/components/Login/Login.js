@@ -50,12 +50,14 @@ function Login() {
   return (
     <>
       <div className='d-flex justify-content-center align-items-center p-4 w-100 loginHead'>
-        <strong>Login</strong>
       </div>
       <br />
       <div className='d-flex justify-content-center align-items-center vh-100 loginPage'>
         <div className='p-4 rounded w-25 loginForm'>
           <form onSubmit={handleSubmit}>
+            <center>
+          <strong>Hey hurry up and login now!!</strong>
+          </center><br></br>
             <div className='mb-3'>
               <input
                 type='text'

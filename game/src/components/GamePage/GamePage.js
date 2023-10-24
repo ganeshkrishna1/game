@@ -11,9 +11,10 @@ function GamePage() {
   const [options, setOptions] = useState([]);
   const [correctAnswer, setCorrectAnswer] = useState('');
   const [userScore, setUserScore] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(120); // 2 minutes in seconds
+  const [timeLeft, setTimeLeft] = useState(100); // 2 minutes in seconds
   const [gameEnded, setGameEnded] = useState(false); // New state to track game end
-
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [answerState, setAnswerState] = useState(''); // 'correct', 'wrong', or ''
   const generateQuestion = () => {
     let newQuestion = '';
     let newOptions = [];
@@ -72,6 +73,13 @@ function GamePage() {
 
   // Function to check the user's answer
   const checkAnswer = (selectedOption) => {
+    setSelectedOption(selectedOption);
+    if (selectedOption === correctAnswer) {
+      setAnswerState('correct');
+      // ... rest of your logic
+    } else {
+      setAnswerState('wrong');
+    }
     if (selectedOption === correctAnswer) {
       if (difficulty === 'easy') {
         setUserScore(userScore + 1);
@@ -114,25 +122,30 @@ function GamePage() {
 
   return (
     <div className="game-page">
-      <h1>Math Game</h1>
-      <p>Difficulty: {difficulty}</p>
-      <p>Time Left: {timeLeft} seconds</p>
-      {!gameEnded ? (
-        <div>
-          <div className="question">
-            <p>{question}</p>
-          </div>
-          <div className="options">
-            {options.map((option, index) => (
-              <button key={index} onClick={() => checkAnswer(option)}>{option}</button>
-            ))}
-          </div>
-        </div>
-      ) : (
-        <p>Your score is: {userScore}</p>
-      )}
+        <h1>Math Game</h1>
+        <p>Difficulty: {difficulty}</p>
+        <p>Time Left: {timeLeft} seconds</p>
+        {!gameEnded ? (
+            <div>
+                <div className="question">
+                    <p>{question}</p>
+                </div>
+                <div className="options">
+                    {options.map((option, index) => (
+                        <button key={index} onClick={() => checkAnswer(option)}>
+                            {option}
+                        </button>
+                    ))}
+                </div>
+            </div>
+        ) : (
+            <div className="game-completed">
+                <p>Your score is: {userScore}</p>
+            </div>
+        )}
     </div>
-  );
+);
+
 }
 
 export default GamePage;

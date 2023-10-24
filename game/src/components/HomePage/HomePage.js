@@ -20,13 +20,13 @@ function HomePage() {
   return (
     <div className="home-page-main">
       <div className="home-page">
-        <h1>Welcome to the Math Game for Kids</h1>
+        <h1>Welcome to the Game !!</h1>
         <button className="start-button" onClick={handleStartGame}>
-          Enter into the game
+          Let's Play Now
         </button>
         {showDifficultyDialog && (
           <div className="difficulty-dialog">
-            <h2>Select Difficulty</h2>
+            <strong>Oops !! Select Difficulty </strong>
             <div className='difficulty-buttons'>
               <button className='diff-btn easy-btn' onClick={() => handleDifficultySelect('easy')}>Easy</button>
               <button className='diff-btn medium-btn' onClick={() => handleDifficultySelect('medium')}>Medium</button>
