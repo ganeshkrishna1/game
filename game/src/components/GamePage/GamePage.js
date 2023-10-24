@@ -131,12 +131,20 @@ function GamePage() {
                     <p>{question}</p>
                 </div>
                 <div className="options">
-                    {options.map((option, index) => (
-                        <button key={index} onClick={() => checkAnswer(option)}>
-                            {option}
-                        </button>
-                    ))}
-                </div>
+    {options.map((option, index) => (
+        <button 
+            key={index} 
+            onClick={() => checkAnswer(option)}
+            className={
+                selectedOption === option 
+                    ? (option === correctAnswer ? 'correct' : 'wrong')
+                    : ''
+            }
+        >
+            {option}
+        </button>
+    ))}
+</div>
             </div>
         ) : (
             <div className="game-completed">
