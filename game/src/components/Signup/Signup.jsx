@@ -2,64 +2,75 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PASSWORD_PATTERN = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+const USERNAME_PATTERN = /^[a-zA-Z0-9]{3,}$/;
+
 function Signup() {
-  const [values, setValues] = useState({
-    name: '',
-    username: '',
-    email: '',
-    password: '',
-  });
+  const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
-
   const [errors, setErrors] = useState({});
 
-  const handleInput = (event) => {
-    setValues((prev) => ({ ...prev, [event.target.name]: event.target.value }));
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const validateInputs = () => {
+    let newErrors = {};
+    if (!email) {
+      newErrors.email = 'Email should not be empty';
+    } else if (!EMAIL_PATTERN.test(email)) {
+      newErrors.email = 'Invalid email format';
+    }
+
+    if (!password) {
+      newErrors.password = 'Password should not be empty';
+    } else if (!PASSWORD_PATTERN.test(password)) {
+      newErrors.password = 'Password must be at least 8 characters long and include special characters, uppercase and lowercase letters, and numbers';
+    }
+
+    if (!username) {
+      newErrors.username = 'Username should not be empty';
+    } else if (!USERNAME_PATTERN.test(username)) {
+      newErrors.username = 'Username must be at least 3 characters long and can only contain alphanumeric characters';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;  // Return true if no errors
+  };
+
+  const registerUser = () => {
+    axios
+      .post('http://localhost:8081/signup', { name, username, email, password })
+      .then((res) => {
+        navigate('/login');
+      })
+      .catch((err) => {
+        console.log(err);
+        alert('An error occurred during signup.');
+      });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    const email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+/;
-    const password_pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    const username_pattern = /^[a-zA-Z0-9]{3,}$/; // alpha-numeric character
-
-    let newErrors = {};
-
-    if (!values.email) {
-      newErrors.email = 'Email should not be empty';
-    } else if (!email_pattern.test(values.email)) {
-      newErrors.email = 'Invalid email format';
-    }
-
-    if (!values.password) {
-      newErrors.password = 'Password should not be empty';
-    } else if (!password_pattern.test(values.password)) {
-      newErrors.password = 'Password must be at least 8 characters long and include special characters, uppercase and lowercase letters, and numbers';
-    }
-
-    if (!values.username) {
-      newErrors.username = 'Username should not be empty';
-    } else if (!username_pattern.test(values.username)) {
-      newErrors.username =
-        'Username must be at least 3 characters long and can only contain alphanumeric characters';
-    }
-
-    setErrors(newErrors);
-
-    // Check if there are any errors before making the signup request
-    if (!newErrors.email && !newErrors.password && !newErrors.username) {
-      // Send the signup request to your server
-      axios
-        .post('http://localhost:8081/signup', values)
-        .then((res) => {
-          navigate('/login');
-        })
-        .catch((err) => {
-          console.log(err);
-          alert('An error occurred during signup.');
-        });
+    if (validateInputs()) {
+      registerUser();
     }
   };
 
@@ -77,8 +88,8 @@ function Signup() {
                 type='text'
                 id='name'
                 placeholder='Enter name'
-                name='name'
-                onChange={handleInput}
+                value={name}
+                onChange={handleNameChange}
                 className='form-control rounded-0'
                 autoComplete='off'
               />
@@ -90,8 +101,8 @@ function Signup() {
                 type='text'
                 id='username'
                 placeholder='Enter Username'
-                name='username'
-                onChange={handleInput}
+                value={username}
+                onChange={handleUsernameChange}
                 className='form-control rounded-0'
                 autoComplete='off'
               />
@@ -103,8 +114,8 @@ function Signup() {
                 type='email'
                 id='email'
                 placeholder='Enter email'
-                name='email'
-                onChange={handleInput}
+                value={email}
+                onChange={handleEmailChange}
                 className='form-control rounded-0'
                 autoComplete='off'
               />
@@ -116,8 +127,8 @@ function Signup() {
                 type='password'
                 id='password'
                 placeholder='Enter Password'
-                name='password'
-                onChange={handleInput}
+                value={password}
+                onChange={handlePasswordChange}
                 className='form-control rounded-0'
               />
               {errors.password && <span className='text-danger'>{errors.password}</span>}

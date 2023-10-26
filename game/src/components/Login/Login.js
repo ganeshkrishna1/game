@@ -2,51 +2,58 @@ import React, { useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function Login() {
-  const [values, setValues] = useState({
-    email: '',
-    password: ''
-  });
+const ADMIN_EMAIL = 'admin@gmail.com';
+const ADMIN_PASSWORD = 'admin';
 
+function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-  const handleInput = (event) => {
-    setValues((prev) => ({ ...prev, [event.target.name]: event.target.value }));
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const isAdmin = () => email === ADMIN_EMAIL && password === ADMIN_PASSWORD;
+
+  const validateInputs = () => {
+    let errorMessages = {};
+    if (!email) errorMessages.email = 'Email should not be empty';
+    if (!password) errorMessages.password = 'Password should not be empty';
+    setErrors(errorMessages);
+    return Object.keys(errorMessages).length === 0;
+  };
+
+  const authenticateUser = () => {
+    axios
+      .post('http://localhost:8081/login', { email, password })
+      .then((res) => {
+        if (res.data.Status === 'Success') {
+          navigate('/home');
+        } else {
+          navigate('/register');
+          alert('Invalid Credentials. Please Register.');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        alert('An error occurred during login.');
+      });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    // Authentication logic
-    const email = values.email;
-    const password = values.password;
-    if (email === 'admin@gmail.com' && password === 'admin') {
+    if (isAdmin()) {
       navigate('/home');
-      return;  // This will prevent any further processing.
-  }
-    // Check for empty email and password
-    if (!email) {
-      setErrors({ email: 'Email should not be empty' });
-    } else if (!password) {
-      setErrors({ password: 'Password should not be empty' });
-    } else {
-      // Authentication request to your server
-      axios
-        .post('http://localhost:8081/login', values)
-        .then((res) => {
-          if (res.data.Status === 'Success') {
-            // Navigate to the "game" page
-            navigate('/home');
-          } else {
-            navigate('/register');
-            alert('Invalid Credentials. Please Register.');
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          alert('An error occurred during login.');
-        });
+      return;
+    }
+    if (validateInputs()) {
+      authenticateUser();
     }
   };
 
@@ -59,15 +66,15 @@ function Login() {
         <div className='p-4 rounded w-25 loginForm'>
           <form onSubmit={handleSubmit}>
             <center>
-          <strong>Hey hurry up and login now!!</strong>
-          </center><br></br>
+              <strong>Hey hurry up and login now!!</strong>
+            </center><br />
             <div className='mb-3'>
               <input
                 type='text'
                 id='email'
                 placeholder='Enter Email'
-                name='email'
-                onChange={handleInput}
+                value={email}
+                onChange={handleEmailChange}
                 className='form-control rounded-0'
                 autoComplete='off'
               />
@@ -78,8 +85,8 @@ function Login() {
                 type='password'
                 id='password'
                 placeholder='Enter Password'
-                name='password'
-                onChange={handleInput}
+                value={password}
+                onChange={handlePasswordChange}
                 className='form-control rounded-0'
               />
               {errors.password && <span className='text-danger'>{errors.password}</span>}
@@ -90,7 +97,6 @@ function Login() {
                   Log in
                 </button>
               </div>
-
               <div className='col-4'>
                 <Link to='/register' type='button' id='signupLink' className='btn btn-primary rounded-0'>
                   Sign up

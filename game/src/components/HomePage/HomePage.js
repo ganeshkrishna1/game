@@ -5,16 +5,19 @@ import './HomePage.css'
 function HomePage() {
   const navigate = useNavigate();
   const [showDifficultyDialog, setShowDifficultyDialog] = useState(false);
+  const difficulties = ['easy', 'medium', 'hard'];
 
   const handleStartGame = () => {
     setShowDifficultyDialog(true);
   }
 
-  const handleDifficultySelect = (difficulty) => {
-    // You can perform any necessary actions here based on the selected difficulty
-    console.log(`Selected difficulty: ${difficulty}`);
-    // Use navigate to transition to the game page with the selected difficulty as a query parameter
+  const redirectToGame = (difficulty) => {
     navigate(`/game?difficulty=${difficulty}`);
+  }
+
+  const handleDifficultySelect = (difficulty) => {
+    console.log(`Selected difficulty: ${difficulty}`);
+    redirectToGame(difficulty);
   }
 
   return (
@@ -24,13 +27,19 @@ function HomePage() {
         <button className="start-button" onClick={handleStartGame}>
           Let's Play Now
         </button>
+
         {showDifficultyDialog && (
           <div className="difficulty-dialog">
             <strong>Oops !! Select Difficulty </strong>
             <div className='difficulty-buttons'>
-              <button className='diff-btn easy-btn' onClick={() => handleDifficultySelect('easy')}>Easy</button>
-              <button className='diff-btn medium-btn' onClick={() => handleDifficultySelect('medium')}>Medium</button>
-              <button className='diff-btn hard-btn' onClick={() => handleDifficultySelect('hard')}>Hard</button>
+              {difficulties.map(diff => (
+                <button 
+                  key={diff}
+                  className={`diff-btn ${diff}-btn`}
+                  onClick={() => handleDifficultySelect(diff)}>
+                  {diff.charAt(0).toUpperCase() + diff.slice(1)}
+                </button>
+              ))}
             </div>
           </div>
         )}
