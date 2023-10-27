@@ -57,11 +57,64 @@ app.post('/login', (req, res) => {
         }
         
         if (results.length === 1) {
-            return res.status(200).json({ status: 'Success' });
+            const userId = results[0].id; 
+            console.log('Logged in as a User. user ID:', userId);
+            return res.status(200).json({ status: 'Success', userId  });
         }
 
         res.status(401).json({ status: 'Failure', message: 'Invalid credentials' });
     });
+});
+
+
+app.get('/users/:userId', (req, res) => {
+    const userId = req.params.userId;
+    const sql = 'SELECT * FROM login WHERE id = ?';
+  
+    con.query(sql, [userId], (error, results) => {
+      if (error) {
+        console.error('Error fetching user details from the database:', error);
+        res.status(500).json({ error: 'Database error' });
+      } else if (results.length === 0) {
+        res.status(404).json({ error: 'User not found' });
+      } else {
+        const user = results[0];
+        res.json(user);
+      }
+    });
+  });
+
+
+  app.post('/storeGameData', (req, res) => {
+    const { difficulty, score, time, userId } = req.body;
+    const insertquery = 'INSERT INTO Game1 (game1_difficulty, game1_score, game1_time, userId) VALUES (?, ?, ?, ?)';
+    const values = [difficulty, score, time, userId];
+    con.query(insertquery, values, (error, results) => {
+      if (error) {
+        console.error('Error storing game data:', error);
+        res.status(500).send('Error storing game data');
+      } else {
+        console.log('Game data stored successfully');
+        res.status(200).send('Game data stored successfully');
+      }
+    });
+  });
+
+
+
+app.get('/game1', (req, res) => {
+  const userId = req.query.userId;
+  if (!userId) {
+    return res.status(400).json({ error: 'User ID is required.' });
+  }
+  const query = 'SELECT game1_difficulty, game1_time, game1_score FROM game1 WHERE userId = ?';
+  con.query(query, [userId], (err, results) => {
+    if (err) {
+      console.error('Error fetching game statistics:', err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+    res.json(results);
+  });
 });
 
 // Start the server

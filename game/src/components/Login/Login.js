@@ -14,6 +14,7 @@ function Login() {
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
+  const [userId, setuserId] = useState(null);
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
@@ -33,7 +34,11 @@ function Login() {
     axios
       .post('http://localhost:8081/login', { email, password })
       .then((res) => {
-        if (res.data.Status === 'Success') {
+        if (res.data.status === 'Success') {
+          const userId = res.data.userId;
+          localStorage.setItem('userId', userId); // Store userId in localStorage
+          setuserId(userId); // Store userId in component state
+          console.log('userId ID:', userId); // Log userId for users
           navigate('/home');
         } else {
           navigate('/register');

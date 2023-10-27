@@ -5,8 +5,6 @@ import { useNavigate } from 'react-router-dom';
 const images = [
     'https://images-workbench.99static.com/xaCz4H7yQkSj57AY63mSvgLbBYM=/99designs-contests-attachments/59/59863/attachment_59863680',
   ];
-
-
 function Games() {
     const navigate = useNavigate();
     const handleButtonClick = (imageIndex) => {

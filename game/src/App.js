@@ -5,7 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
-
+import Game1 from './components/Games/Game1';
+import Profile from './components/Profile/profile';
+import Dashboard from './components/Dashboard/Dashboard';
 
 function App() {
   return (
@@ -16,6 +18,9 @@ function App() {
         <Route path="/game" element={<GamePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Signup />} />
+        <Route path="/game1" element={<Game1 />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );
