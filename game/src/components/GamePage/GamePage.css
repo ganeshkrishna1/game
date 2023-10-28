@@ -28,7 +28,18 @@ h1 {
   align-items: center;
 }
 
-.timer-buttons, .difficulty-images {
+.difficulty-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.difficulty-images{
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+.timer-buttons {
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
@@ -55,6 +66,7 @@ h1 {
 .difficulty-images img {
   width: 100px; /* Adjust the width as needed */
   height: auto; /* Maintain aspect ratio */
+  cursor: pointer;
 }
 
 .start-button {

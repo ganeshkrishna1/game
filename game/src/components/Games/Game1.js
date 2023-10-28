@@ -276,15 +276,18 @@ function Game1() {
       >
         Drop Here
       </div>
-       {/* Reset Button */}
-       <button className="reset-button" onClick={() => window.location.reload()}>
-        <FontAwesomeIcon icon="sync" /> Reset
-      </button>
 
-      {/* Home Button with useNavigate */}
-      <button className="home-button" onClick={() => navigate('/home')}>
-        <FontAwesomeIcon icon="home" /> Home
-      </button>
+      <div className='game-buttons'>
+       {/* Reset Button */}
+        <button className="reset-button" onClick={() => window.location.reload()}>
+          <FontAwesomeIcon icon="sync" /> Reset
+        </button>
+
+        {/* Home Button with useNavigate */}
+        <button className="home-button" onClick={() => navigate('/home')}>
+          <FontAwesomeIcon icon="home" /> Home
+        </button>
+      </div>
     </div>
   );
 }
