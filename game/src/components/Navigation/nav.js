@@ -12,7 +12,7 @@ function Nav() {
 
     return (
         <nav className="navbar">
-            <Link to="/" className="nav-brand">MathGrab</Link>
+            <Link to="/" className="nav-brand"> Drag n Drop</Link>
             <ul className="nav-menu">
                 <li><Link to="/register">Register Here</Link></li>
                 {/* Uncomment the line below if you want to use the handleLogout function */}

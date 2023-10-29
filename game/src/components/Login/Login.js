@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import Nav from '../Navigation/nav';
 const ADMIN_EMAIL = 'admin@gmail.com';
 const ADMIN_PASSWORD = 'admin';
 
@@ -64,14 +64,15 @@ function Login() {
 
   return (
     <>
+            <Nav/>
       <div className='d-flex justify-content-center align-items-center p-4 w-100 loginHead'>
       </div>
       <br />
-      <div className='d-flex justify-content-center align-items-center vh-100 loginPage'>
+      <div className='d-flex justify-content-center align-items-center  loginPage'>
         <div className='p-4 rounded w-25 loginForm'>
           <form onSubmit={handleSubmit}>
             <center>
-              <strong>Hey hurry up and login now!!</strong>
+              <strong>Hey Hurry up and login to play now!!</strong>
             </center><br />
             <div className='mb-3'>
               <input
