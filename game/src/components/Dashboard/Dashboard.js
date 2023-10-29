@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../Navbar/Navbar';
-
+import "./Dashboard.css";
 const Dashboard = () => {
   const [user, setUser] = useState(null);
   const [gameStats, setGameStats] = useState([]);
@@ -31,12 +31,16 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-    <Navbar />
+          <Navbar/>
       {user && (
         <div className="user-info">
-          <h2>Welcome, {user.name}</h2>
+          <center>
+          <br></br>
+          <h2>Welcome, {user.name}, See Your Scores Here !!!</h2>
+          </center>
         </div>
       )}
+      <center>
       <div className="game-stats">
         <h3>Game Statistics:</h3>
         <table>
@@ -58,6 +62,7 @@ const Dashboard = () => {
           </tbody>
         </table>
       </div>
+      </center>
     </div>
   );
 };

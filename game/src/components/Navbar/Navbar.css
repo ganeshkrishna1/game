@@ -1,0 +1,47 @@
+/* Navbar styles */
+.navbar1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: radial-gradient(circle, rgba(28,43,104,1) 0%, rgba(89,21,77,1) 100%);
+    padding: 10px 20px;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .navbar1 a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .navbar1 a:hover {
+    background-color: black;
+  }
+  
+  .user-profile {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-profile img {
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .logout {
+    padding: 5px 10px;
+    color: white;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .logout:hover {
+    background-color: darkred;
+  }
+  

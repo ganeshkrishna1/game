@@ -238,15 +238,21 @@ function Game1() {
       <h1>Drag and Drop Game - {difficulty} Level</h1>
       <div className="game-container">
         <div className="questions">
-          <p>Difficulty: {difficulty}</p>
+          <center>
+          <p>Difficulty Level: {difficulty}</p>
           <p>Time Left: {timeLeft} seconds</p>
+          </center>
           {currentQuestion < questions[difficulty].length ? (
             <div className="question">{questions[difficulty][currentQuestion].question}</div>
           ) : null}
           {gameEnded && (
             <div className="game-completed">
+                          <center>
+
               <p>Congratulations! You've completed the game.</p>
               <p>Your Score: {userScore}</p>
+              </center>
+
             </div>
           )}
         </div>
@@ -254,7 +260,7 @@ function Game1() {
           {questions[difficulty].map((question, index) => (
             <div
               key={index}
-              className="image-container"
+              className="image-container1"
               draggable
               onDragStart={(e) => handleDragStart(e, question.correctAnswer)}
             >

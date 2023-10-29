@@ -1,0 +1,23 @@
+
+  h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    border-bottom: 2px solid #333;
+    padding-bottom: 0.5rem;
+  }
+  
+  p {
+    background-color: #fff;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  }
+  .info{
+    color:black;
+    margin-left: 40%;
+    margin-top: 1%;
+  }
+  

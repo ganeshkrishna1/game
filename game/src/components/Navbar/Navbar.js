@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-
+import "./Navbar.css";
 const Navbar = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
@@ -27,13 +27,12 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar">
+    <div className="navbar1">
       {user ? (
         <div className="user-profile">
           <Link to="/profile">
-            <img src={user.profileImage} alt={user.name} width="30" height="30" />
-          </Link>
           <span>{user.name}</span>
+          </Link>
         </div>
       ) : null}
       <Link to="/home">

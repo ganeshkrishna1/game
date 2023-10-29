@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../Navbar/Navbar';
-
+import "./profile.css";
 const Profile = () => {
   const [userProfile, setUserProfile] = useState(null);
 
@@ -24,11 +24,14 @@ const Profile = () => {
     <Navbar />
       {userProfile ? (
         <div>
-          <h2>Profile</h2>
-          <div>
-            <p>Name: {userProfile.name}</p>
-            <p>Username: {userProfile.username}</p>
-            <p>Email: {userProfile.email}</p>
+          <br></br>
+          <center>
+          <h2>Player Info</h2>
+          </center>
+          <div className='info'>
+            <p><b>Name:</b> {userProfile.name}</p>
+            <p><b>Username:</b> {userProfile.username}</p>
+            <p><b>Email:</b> {userProfile.email}</p>
           </div>
         </div>
       ) : (
