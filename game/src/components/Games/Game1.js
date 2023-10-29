@@ -103,6 +103,11 @@ const questions = {
         correctAnswer: "Bat",
         image: "https://t4.ftcdn.net/jpg/01/08/96/05/360_F_108960561_yKoXbFjvPt3uPznqEZSiGxcGiO04Akry.jpg",
     },
+    {
+      question: "Which bird is famous for its beautiful tail feathers and can dance?",
+      correctAnswer: "Peacock",
+      image: "https://img.freepik.com/premium-vector/beautiful-peacock-cartoon-illustration-isolated-white-background_338371-427.jpg",
+    },
   ],
   hard: [
     {
@@ -145,9 +150,27 @@ const questions = {
         correctAnswer: "Bumblebee Bat",
         image: "https://st5.depositphotos.com/1174456/65398/v/450/depositphotos_653982164-stock-illustration-cute-kawaii-airplane-chibi-mascot.jpg",
     },
+    {
+      question: "Which animal is known for its armor-like scales and is often seen in deserts?",
+      correctAnswer: "Armadillo",
+      image: "https://static.vecteezy.com/system/resources/previews/003/442/625/non_2x/armadillo-cartoon-illustrations-free-vector.jpg",
+    },
+    {
+      question: "What is the name of the playful marine mammals known for balancing balls on their noses?",
+      correctAnswer: "Seal",
+      image: "https://img.freepik.com/premium-vector/cute-little-seal-cartoon-lying-down_188253-2632.jpg",
+    },
 
   ],
 };
+
+function shuffleArray(array) {
+  // Fisher-Yates (Knuth) shuffle algorithm
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
 
 function Game1() {
   const location = useLocation();
@@ -161,6 +184,17 @@ function Game1() {
   const [gameEnded, setGameEnded] = useState(false);
   const [userScore, setUserScore] = useState(0);
   const navigate = useNavigate();
+  const [shuffledQuestionIndices, setShuffledQuestionIndices] = useState([]);
+
+  useEffect(() => {
+    // Create a copy of the questions for the selected difficulty level
+    const questionsForDifficulty = [...questions[difficulty]];
+    
+    // Shuffle the question indices when the component mounts or when the difficulty changes
+    const indices = Array.from({ length: questionsForDifficulty.length }, (_, i) => i);
+    shuffleArray(indices);
+    setShuffledQuestionIndices(indices);
+  }, [difficulty]);
 
   const handleDragStart = (e, item) => {
     if (!gameEnded) {
@@ -184,7 +218,7 @@ function Game1() {
       return;
     }
 
-    const currentCorrectAnswer = questions[difficulty][currentQuestion].correctAnswer;
+    const currentCorrectAnswer = questions[difficulty][shuffledQuestionIndices[currentQuestion]]?.correctAnswer;
 
     if (draggedItem === currentCorrectAnswer && target === currentCorrectAnswer) {
       // Correct answer, move to the next question and assign points
@@ -240,15 +274,17 @@ function Game1() {
         <div className="questions">
           <center>
           <p>Difficulty Level: {difficulty}</p>
-          <p>Time Left: {timeLeft} seconds</p>
-          </center>
-          {currentQuestion < questions[difficulty].length ? (
-            <div className="question">{questions[difficulty][currentQuestion].question}</div>
+         <p>Time Left: {timeLeft} seconds</p>
+         </center>
+
+         {currentQuestion < shuffledQuestionIndices.length ? (
+            <div className="question">
+              {questions[difficulty][shuffledQuestionIndices[currentQuestion]]?.question}
+            </div>
           ) : null}
           {gameEnded && (
             <div className="game-completed">
                           <center>
-
               <p>Congratulations! You've completed the game.</p>
               <p>Your Score: {userScore}</p>
               </center>
@@ -275,10 +311,12 @@ function Game1() {
       </div>
       <div
         className={`target ${
-          draggedItem === questions[difficulty][currentQuestion].correctAnswer ? 'valid' : ''
+          draggedItem === questions[difficulty][shuffledQuestionIndices[currentQuestion]]?.correctAnswer ? 'valid' : ''
         }`}
         onDragOver={handleDragOver}
-        onDrop={(e) => handleDrop(e, questions[difficulty][currentQuestion].correctAnswer)}
+        onDrop={(e) =>
+          handleDrop(e, questions[difficulty][shuffledQuestionIndices[currentQuestion]]?.correctAnswer)
+        }
       >
         Drop Here
       </div>
