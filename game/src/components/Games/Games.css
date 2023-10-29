@@ -19,13 +19,13 @@ body {
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
-  padding-top: 20px;
+  padding-top: 80px;
 }
 
 .image-container {
   position: relative;
-  width: 250px;
-  height: 350px;
+  width: 400px;
+  height: 300px;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
@@ -50,9 +50,8 @@ body {
 .image-button {
   position: absolute;
   bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #007bff;
+  left: 35%;
+  background-color: #0056b3;
   color: white;
   padding: 10px 20px;
   border-radius: 5px;

@@ -3,7 +3,7 @@ import "./Games.css";
 import Nav from '../Navigation/nav';
 import { useNavigate } from 'react-router-dom';
 const images = [
-    'https://cdn2.momjunction.com/wp-content/uploads/2015/08/21EnjoyableIndoorGamesForKids-1-624x702.jpg.webp',
+    'https://1.bp.blogspot.com/-tyIlXNOi9y0/XWpFkTnQfxI/AAAAAAAAF6g/kXvqo3Pn-DoAB4N-FkJyqVf3hmiDzdzwACLcBGAs/s1600/Cara-Mengaktifkan-Drag-%2526-Drop-Footage-di-Premiere-Pro.jpg',
   ];
 function Games() {
     const navigate = useNavigate();
