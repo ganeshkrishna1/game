@@ -10,6 +10,9 @@ function HomePage() {
     navigate('/game');
   };
 
+  const handleDemo = () => {
+    navigate('/demo');
+  };
   return (
     
     <div className="home-page-main">
@@ -18,6 +21,9 @@ function HomePage() {
         <h1>Welcome to the Game !!</h1>
         <button className="start-button" onClick={handleStartGame}>
           Let's Play Now
+        </button>
+        <button className="demo-button" onClick={handleDemo}>
+          Demo
         </button>
       </div>
     </div>

@@ -3,7 +3,12 @@ import mysql from "mysql";
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import bodyParser from "body-parser";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
+// Determine the directory name
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const app = express();
 
 // Middleware
@@ -11,6 +16,11 @@ app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.json());
+app.use(express.static("public"));
+
+app.get("/video", (req, res) => {
+  res.sendFile(__dirname + "/public/video.mp4");
+});
 
 // Database connection setup
 const con = mysql.createConnection({

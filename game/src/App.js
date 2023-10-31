@@ -8,6 +8,7 @@ import Signup from './components/Signup/Signup';
 import Game1 from './components/Games/Game1';
 import Profile from './components/Profile/profile';
 import Dashboard from './components/Dashboard/Dashboard';
+import Demo from './components/Demo/Demo';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/game1" element={<Game1 />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/demo" element={<Demo />} />
       </Routes>
     </BrowserRouter>
   );

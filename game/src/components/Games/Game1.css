@@ -137,3 +137,16 @@ button:active {
   align-items: center;
   gap: 5px;
 }
+
+/* DarkTheme.css */
+.dark-theme {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* LightTheme.css */
+.light-theme {
+  background-color: #ffffff;
+  color: #000000;
+}
+
