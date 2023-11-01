@@ -150,3 +150,34 @@ button:active {
   color: #000000;
 }
 
+/* Add this CSS to your Game1.css or create a new CSS file */
+.feedback-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  max-width: 400px; /* Adjust the width as needed */
+  max-height: 80vh; /* Adjust the height as needed */
+  overflow-y: auto;
+}
+
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+}
+
+.close-button:hover {
+  color: red; /* Change the color on hover if desired */
+}

@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate  } from 'react-router-dom';
 import axios from 'axios'; // Import Axios
 import './Game1.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Fix the import statement
+
+import FeedbackForm from './FeedbackForm';
 
 const questions = {
   easy: [
@@ -249,6 +251,7 @@ function Game1() {
   const [showHint, setShowHint] = useState(false);
   const [hintIndex, setHintIndex] = useState(-1);
   const [theme, setTheme] = useState('light'); // Default to light theme
+  const [showFeedbackModal, setShowFeedbackModal] = useState(false);
 
   const currentQuestionData = questions[difficulty][shuffledQuestionIndices[currentQuestion]];
 
@@ -348,9 +351,14 @@ function Game1() {
         .catch((error) => {
           console.error('Error storing game data', error);
         });
+        setShowFeedbackModal(true); // Display the feedback form modal when the game ends
+
     }
   }, [gameEnded]); // This effect depends on the gameEnded state
 
+  const openFeedbackModal = () => {
+    setShowFeedbackModal(true);
+  };
 
   return (
     <div className={`game1 ${theme}-theme`}>
@@ -388,6 +396,15 @@ function Game1() {
           {answerMessage && (
             <div className="answer-message">
               <p>{answerMessage}</p>
+            </div>
+          )}
+          {showFeedbackModal && (
+            <div className="feedback-modal">
+            <button className="close-button" onClick={() => setShowFeedbackModal(false)}>X</button>
+              <FeedbackForm
+                userId={localStorage.getItem('userId')}
+                onClose={() => setShowFeedbackModal(false)}
+              />
             </div>
           )}
         </div>

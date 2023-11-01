@@ -9,6 +9,7 @@ import Game1 from './components/Games/Game1';
 import Profile from './components/Profile/profile';
 import Dashboard from './components/Dashboard/Dashboard';
 import Demo from './components/Demo/Demo';
+import FeedbackForm from './components/Games/FeedbackForm';
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/demo" element={<Demo />} />
+        <Route path="/feedback" element={<FeedbackForm />} />
+
       </Routes>
     </BrowserRouter>
   );
