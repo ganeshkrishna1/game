@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2023 at 11:31 AM
+-- Generation Time: Nov 01, 2023 at 10:13 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,6 +24,27 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `id` int(11) NOT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `rating` int(11) DEFAULT NULL,
+  `comments` text DEFAULT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`id`, `userId`, `rating`, `comments`, `timestamp`) VALUES
+(1, 5, 2, 'goof', '2023-11-01 09:07:43');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `game1`
 --
 
@@ -40,11 +61,10 @@ CREATE TABLE `game1` (
 --
 
 INSERT INTO `game1` (`game1_id`, `game1_difficulty`, `game1_score`, `game1_time`, `userId`) VALUES
-(1, 'easy', 10, 6, 5),
+(1, 'easy', 0, 60, 5),
 (2, 'easy', 0, 60, 5),
 (3, 'easy', 0, 60, 5),
-(4, 'easy', 0, 60, 5),
-(5, 'easy', 0, 60, 5);
+(4, 'easy', 0, 60, 5);
 
 -- --------------------------------------------------------
 
@@ -73,6 +93,13 @@ INSERT INTO `login` (`id`, `name`, `username`, `email`, `password`) VALUES
 --
 
 --
+-- Indexes for table `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userId` (`userId`);
+
+--
 -- Indexes for table `game1`
 --
 ALTER TABLE `game1`
@@ -90,10 +117,16 @@ ALTER TABLE `login`
 --
 
 --
+-- AUTO_INCREMENT for table `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `game1`
 --
 ALTER TABLE `game1`
-  MODIFY `game1_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `game1_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `login`
@@ -104,6 +137,12 @@ ALTER TABLE `login`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `feedback`
+--
+ALTER TABLE `feedback`
+  ADD CONSTRAINT `feedback_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `login` (`id`);
 
 --
 -- Constraints for table `game1`

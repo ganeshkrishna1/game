@@ -127,6 +127,25 @@ app.get('/game1', (req, res) => {
   });
 });
 
+
+app.post('/submitFeedback', (req, res) => {
+  const { userId, rating, comments } = req.body;
+  if (!userId || rating < 1 || rating > 5) {
+      return res.status(400).json({ error: 'Invalid feedback data' });
+  }
+  const insertQuery = 'INSERT INTO feedback (userId, rating, comments) VALUES (?, ?, ?)';
+  const values = [userId, rating, comments];
+  con.query(insertQuery, values, (error, results) => {
+      if (error) {
+          console.error('Error inserting feedback into the database:', error);
+          return res.status(500).json({ error: 'Error inserting feedback' });
+      }
+      console.log('Feedback submitted successfully');
+      res.status(200).json({ message: 'Feedback submitted successfully' });
+  });
+});
+
+
 // Start the server
 app.listen(8081, () => {
     console.log("Server running on port 8081");
