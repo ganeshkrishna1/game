@@ -355,7 +355,7 @@ function Game1() {
   return (
     <div className={`game1 ${theme}-theme`}>
     <button className="theme-button" onClick={toggleTheme}> Dark Mode </button>
-      <h1>Drag and Drop Game - {difficulty} Level</h1>
+      <h1 className='game-header'>Drag and Drop Game - {difficulty} Level</h1>
       <div className="game-container">
         <div className={`questions ${theme}-theme`}>
           <center>
