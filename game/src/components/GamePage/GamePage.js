@@ -1,16 +1,31 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Navbar from '../Navbar/Navbar';
-import './GamePage.css'
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
+import "./GamePage.css";
 function HomePage() {
   const navigate = useNavigate();
   const [selectedDifficulty, setSelectedDifficulty] = useState(null);
   const [selectedTimer, setSelectedTimer] = useState(null);
 
   const difficulties = [
-    { name: 'easy', label: 'Easy', imageSrc: 'https://img.lovepik.com/free-png/20210926/lovepik-game-icon-png-image_401503004_wh1200.png' },
-    { name: 'medium', label: 'Medium', imageSrc: 'https://img.lovepik.com/free-png/20210926/lovepik-game-icon-png-image_401503004_wh1200.png' },
-    { name: 'hard', label: 'Hard', imageSrc: 'https://img.lovepik.com/free-png/20210926/lovepik-game-icon-png-image_401503004_wh1200.png' },
+    {
+      name: "easy",
+      label: "Easy",
+      imageSrc:
+        "https://img.lovepik.com/free-png/20210926/lovepik-game-icon-png-image_401503004_wh1200.png",
+    },
+    {
+      name: "medium",
+      label: "Medium",
+      imageSrc:
+        "https://img.lovepik.com/free-png/20210926/lovepik-game-icon-png-image_401503004_wh1200.png",
+    },
+    {
+      name: "hard",
+      label: "Hard",
+      imageSrc:
+        "https://img.lovepik.com/free-png/20210926/lovepik-game-icon-png-image_401503004_wh1200.png",
+    },
   ];
 
   const timers = [60, 90, 120];
@@ -25,14 +40,17 @@ function HomePage() {
 
   const startGame = () => {
     if (selectedDifficulty && selectedTimer) {
-      navigate(`/game1?difficulty=${selectedDifficulty}&timer=${selectedTimer}`);
+      navigate(
+        `/game1?difficulty=${selectedDifficulty}&timer=${selectedTimer}`
+      );
     } else {
       // Display an error message or prompt the user to make selections.
     }
   };
 
   return (
-    <div><Navbar />
+    <div>
+      <Navbar />
       {selectedDifficulty ? (
         <div className="timer-selection">
           <strong>Select Timer:</strong>
@@ -40,7 +58,9 @@ function HomePage() {
             {timers.map((timer) => (
               <button
                 key={timer}
-                className={`timer-btn ${timer === selectedTimer ? 'selected' : ''}`}
+                className={`timer-btn ${
+                  timer === selectedTimer ? "selected" : ""
+                }`}
                 onClick={() => handleSelectTimer(timer)}
               >
                 {timer} sec
@@ -55,11 +75,12 @@ function HomePage() {
         </div>
       ) : (
         <div className="difficulty-selection">
-          <strong>Select Difficulty:</strong>
+          <div className="diff-title">Select Difficulty:</div>
           <div className="difficulty-images">
             {difficulties.map((difficulty) => (
               <div key={difficulty.name} className="difficulty-card">
                 <img
+                  className="dif-img"
                   src={difficulty.imageSrc}
                   alt={difficulty.label}
                   onClick={() => handleStartGame(difficulty.name)}
@@ -70,7 +91,7 @@ function HomePage() {
           </div>
         </div>
       )}
-</div>
+    </div>
   );
 }
 
