@@ -109,6 +109,7 @@ h1 {
   color: #FFFFFF;
   cursor: pointer;
   transition: all 0.3s ease;
+  margin-top: 20px;
 }
 
 .start-button:hover {
