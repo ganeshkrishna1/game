@@ -19,6 +19,10 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: 400;
 }
+.demo-button{
+    padding: 10px 20px;
+    
+}
 
 .start-button{
     padding: 5px 20px;
