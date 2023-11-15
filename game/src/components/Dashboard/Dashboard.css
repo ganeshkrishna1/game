@@ -5,7 +5,10 @@
     margin-bottom: 2rem;
     color: #333;
   }
-  
+  .canvasjs-chart-credit{
+    display: none;
+  }
+
   .game-stats {
     width: 100%;
     max-width: 600px;
