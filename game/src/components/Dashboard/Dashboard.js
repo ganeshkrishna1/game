@@ -10,31 +10,20 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 const Dashboard = () => {
   const [user, setUser] = useState(null);
   const [gameStats, setGameStats] = useState([]);
-
-  const options = {
+  const [options, setOptions] = useState({
     animationEnabled: true,
-    theme: "light1", // "light1", "dark1", "dark2"
+    theme: "light1",
     title: {
-      text: "Game Scores",
+      text: "Game Statistics",
     },
     data: [
       {
         type: "pie",
         startAngle: -90,
-        dataPoints: [
-          { y: 20, label: "Easy - 60sec" },
-          { y: 24, label: "Medium - 60sec" },
-          { y: 20, label: "Hard - 60sec" },
-          { y: 14, label: "Easy - 90sec" },
-          { y: 12, label: "Medium - 90sec" },
-          { y: 10, label: "Hard - 90sec" },
-          { y: 14, label: "Easy - 120sec" },
-          { y: 12, label: "Medium - 120sec" },
-          { y: 10, label: "Hard - 120sec" },
-        ],
+        dataPoints: [],
       },
     ],
-  };
+  });
 
   useEffect(() => {
     // Fetch user details from the login table
@@ -55,6 +44,26 @@ const Dashboard = () => {
       .get(`http://localhost:8081/game1?userId=${userId}`)
       .then((response) => {
         setGameStats(response.data);
+
+        // Dynamically update dataPoints based on fetched gameStats
+        const newDataPoints = response.data.map((game) => ({
+          y: game.game1_score,
+          label: `${game.game1_difficulty} - ${game.game1_time}sec`,
+        }));
+
+        // Update the options object with dynamic dataPoints
+        const updatedOptions = {
+          ...options,
+          data: [
+            {
+              ...options.data[0],
+              dataPoints: newDataPoints,
+            },
+          ],
+        };
+
+        // Set the updated options
+        setOptions(updatedOptions);
       })
       .catch((error) => {
         console.error("Error fetching game statistics:", error);
@@ -64,37 +73,16 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <Navbar />
-      {/* {user && (
+      {user && (
         <div className="user-info">
           <center>
-          <br></br>
-          <h2>Welcome, {user.name}, See Your Scores Here !!!</h2>
+            <br></br>
+            <h2>Welcome, {user.name}, See Your Performance Here !!!</h2>
           </center>
         </div>
       )}
-      <center>
-      <div className="game-stats">
-        <h3>Game Statistics:</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Difficulty</th>
-              <th>Time</th>
-              <th>Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            {gameStats.map((game, index) => (
-              <tr key={index}>
-                <td>{game.game1_difficulty}</td>
-                <td>{game.game1_time} seconds</td>
-                <td>{game.game1_score} points</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      </center> */}
+    
+        
       <CanvasJSChart
         options={options}
         containerProps={{
