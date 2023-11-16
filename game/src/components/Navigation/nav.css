@@ -3,14 +3,15 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background: radial-gradient(circle, rgba(28,43,104,1) 0%, rgba(89,21,77,1) 100%);
+    /* background: radial-gradient(circle, rgba(28,43,104,1) 0%, rgba(89,21,77,1) 100%); */
+    background: #A6CF98;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
   
   .nav-brand {
     font-size: 1.5em;
-    color: #fff;
+    color: #557C55;
     text-decoration: none;
     margin-left: 20px;
   }
@@ -30,12 +31,12 @@
   
   .nav-menu li a {
     text-decoration: none;
-    color: #fff;
+    color: #557C55;
     transition: color 0.3s ease;
   }
   
   .nav-menu li a:hover {
-    background-color: black;
+    background-color: #F2FFE9;
     font-size: 1.2em;  /* Increase the font size */
     padding: 5px 10px;  /* Add some padding to make the green background more pronounced */
     border-radius: 5px;  /* Optional: Add rounded corners to the hover effect */

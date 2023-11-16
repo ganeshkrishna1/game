@@ -148,6 +148,7 @@ function Signup() {
                   type="submit"
                   id="loginButton"
                   className="btn btn-success w-100 rounded-1"
+                  style={{ backgroundColor: "#FA7070", border: "none" }}
                 >
                   Submit
                 </button>
