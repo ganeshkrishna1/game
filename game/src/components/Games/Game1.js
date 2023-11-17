@@ -398,61 +398,64 @@ function Game1() {
       </button>
       <h1 className="game-header">Drag and Drop Game - {difficulty} Level</h1>
       <div className="game-container">
-        <div className={`questions ${theme}-theme`}>
-          <div className="diffcultyAndTime">
-            <div className="diffcultyAndTime__box">
-              Difficulty Level: {difficulty}
-            </div>
-            <div className="diffcultyAndTime__box">
-              Time Left: {timeLeft} seconds
-            </div>
+        {gameEnded ? (
+          <div className="game-completed">
+            <center>
+              <p>Congratulations! You've completed the game.</p>
+              <p>Your Score: {userScore}</p>
+            </center>
           </div>
-          {currentQuestion < shuffledQuestionIndices.length ? (
-            <div className="question">
-              {
-                questions[difficulty][shuffledQuestionIndices[currentQuestion]]
-                  ?.question
-              }
+        ) : (
+          <div className={`questions ${theme}-theme`}>
+            <div className="diffcultyAndTime">
+              <div className="diffcultyAndTime__box">
+                Difficulty Level: {difficulty}
+              </div>
+              <div className="diffcultyAndTime__box">
+                Time Left: {timeLeft} seconds
+              </div>
             </div>
-          ) : null}
-          <div className="hint-button">
-            <button onClick={handleHintClick} disabled={gameEnded}>
-              {showHint ? "Hide Hint" : "Show Hint"}
-            </button>
-            {showHint && hintIndex === currentQuestion && (
-              <div className="hint-display">
-                <p>Hint: {currentQuestionData.hint}</p>
+            {currentQuestion < shuffledQuestionIndices.length ? (
+              <div className="question">
+                {
+                  questions[difficulty][
+                    shuffledQuestionIndices[currentQuestion]
+                  ]?.question
+                }
+              </div>
+            ) : null}
+            <div className="hint-button">
+              <button onClick={handleHintClick} disabled={gameEnded}>
+                {showHint ? "Hide Hint" : "Show Hint"}
+              </button>
+              {showHint && hintIndex === currentQuestion && (
+                <div className="hint-display">
+                  <p>Hint: {currentQuestionData.hint}</p>
+                </div>
+              )}
+            </div>
+
+            {answerMessage && (
+              <div className="answer-message">
+                <p>{answerMessage}</p>
+              </div>
+            )}
+            {showFeedbackModal && (
+              <div className="feedback-modal">
+                <button
+                  className="close-button"
+                  onClick={() => setShowFeedbackModal(false)}
+                >
+                  X
+                </button>
+                <FeedbackForm
+                  userId={localStorage.getItem("userId")}
+                  onClose={() => setShowFeedbackModal(false)}
+                />
               </div>
             )}
           </div>
-          {gameEnded && (
-            <div className="game-completed">
-              <center>
-                <p>Congratulations! You've completed the game.</p>
-                <p>Your Score: {userScore}</p>
-              </center>
-            </div>
-          )}
-          {answerMessage && (
-            <div className="answer-message">
-              <p>{answerMessage}</p>
-            </div>
-          )}
-          {showFeedbackModal && (
-            <div className="feedback-modal">
-              <button
-                className="close-button"
-                onClick={() => setShowFeedbackModal(false)}
-              >
-                X
-              </button>
-              <FeedbackForm
-                userId={localStorage.getItem("userId")}
-                onClose={() => setShowFeedbackModal(false)}
-              />
-            </div>
-          )}
-        </div>
+        )}
         <div className="images">
           {questions[difficulty].map((question, index) => (
             <div

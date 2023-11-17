@@ -12,17 +12,13 @@ function Nav() {
 
   return (
     <nav className="navbar">
-      <Link to="/" className="nav-brand">
-        {" "}
-        Drag n Drop
-      </Link>
-      <div style={{ width: "20%" }}>
+      <Link style={{ width: "20%" }} to="/" className="nav-brand">
         <img
           src={process.env.PUBLIC_URL + "/assets/logogame.png"}
           alt="logo"
           style={{ height: "100%", width: "100%" }}
         />
-      </div>
+      </Link>
       <ul className="nav-menu">
         <li>
           <Link to="/register">Register Here</Link>
