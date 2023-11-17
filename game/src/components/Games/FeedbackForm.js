@@ -41,6 +41,7 @@ function FeedbackForm({ userId,onClose }) {
       <div>
         <label>Rating:</label>
         <select value={rating} onChange={handleRatingChange}>
+          <option value={0}>Choose</option>
           <option value={1}>1 star</option>
           <option value={2}>2 stars</option>
           <option value={3}>3 stars</option>
