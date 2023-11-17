@@ -60,7 +60,6 @@ function HomePage() {
             <div className="demo-left-panel">
               <h2>INSTRUCTIONS</h2>
               <ul>
-                <b><li><p>To display images, save them in the public folder inside the server folder.</p></li></b>
                 <li><p>Welcome to the game! Your job is to match the pictures on the top to their questions below.</p></li>
                 <li><p>Click and hold on a picture on the top, then drag it to where you think it matches below.</p></li>
                 <li><p>When you think you've matched them correctly, release the mouse button.</p></li>
