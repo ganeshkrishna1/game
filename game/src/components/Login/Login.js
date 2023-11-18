@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Nav from "../Navigation/nav";
+import "../../App.css";
+
 const ADMIN_EMAIL = "admin@gmail.com";
 const ADMIN_PASSWORD = "admin";
 
@@ -63,9 +65,9 @@ function Login() {
   };
 
   return (
-    <>
+    <div className="loginPage">
       <Nav />
-      <div className="d-flex justify-content-center align-items-center mt-5 loginPage">
+      <div className="d-flex justify-content-center align-items-center mt-5 ">
         <div className="p-4 rounded w-25 text-white loginForm">
           <form onSubmit={handleSubmit}>
             <center>
@@ -125,7 +127,7 @@ function Login() {
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -425,7 +425,11 @@ function Game1() {
               </div>
             ) : null}
             <div className="hint-button">
-              <button onClick={handleHintClick} disabled={gameEnded}>
+              <button
+                className="hint-btn"
+                onClick={handleHintClick}
+                disabled={gameEnded}
+              >
                 {showHint ? "Hide Hint" : "Show Hint"}
               </button>
               {showHint && hintIndex === currentQuestion && (

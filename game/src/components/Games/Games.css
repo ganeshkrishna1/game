@@ -1,18 +1,7 @@
 /* Using CSS Variables for Recurrent Color Values */
-:root {
-  --main-bg-color: #1a1a1a;
-  --button-bg-color: indigo;
-  --button-hover-bg-color: green;
-  --transition-transform: transform 0.5s;
-  --transition-bg-and-transform: background-color 0.3s ease, transform 0.3s ease;
-}
+.app-nav{
 
-body {
-  font-family: 'Arial', sans-serif;
-  color: #eee;
-  background-color: var(--main-bg-color);
-  background: radial-gradient(circle, rgba(177,186,170,1) 68%, rgba(0,0,0,0) 100%, rgba(242,255,233,1) 100%);
-
+  height: 100vh;
 }
 
 .image-grid {
@@ -53,17 +42,21 @@ body {
   position: absolute;
   bottom: 10px;
   left: 35%;
-  background-color: #A6CF98;
-  color: #557C55;
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
+  outline: 0;
+  border: 0;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-weight: 600;
+  color: #fff;
+  font-size: 14px;
+  padding: 8px 24px;
+  border-radius: 10px;
+  background-image: linear-gradient(180deg,#99a1ea,#a148ef);
+  box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
+  transition: all .2s ease-out;
 }
 
 .image-button:hover {
-  background-color: #F2FFE9;
+  background-image: linear-gradient(180deg,#99a1eaad,#a148efab);
 }
 
 .image-button:focus {

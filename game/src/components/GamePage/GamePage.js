@@ -49,7 +49,7 @@ function HomePage() {
   };
 
   return (
-    <div>
+    <div className="gamepage-main">
       <Navbar />
       {selectedDifficulty ? (
         <div className="timer-selection">

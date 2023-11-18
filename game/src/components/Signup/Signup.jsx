@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, Outlet, useNavigate } from "react-router-dom";
+import "../../App.css";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PASSWORD_PATTERN =
@@ -79,7 +80,7 @@ function Signup() {
 
   return (
     <>
-      <div className="d-flex justify-content-center align-items-center mt-5 SignupPage">
+      <div className="d-flex justify-content-center align-items-center text-white SignupPage">
         <div className=" d-flex flex-column align-items-center rounded w-25 signupForm">
           <strong className=" my-3">Register</strong>
           <form onSubmit={handleSubmit}>

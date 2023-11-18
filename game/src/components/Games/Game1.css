@@ -10,12 +10,38 @@ body {
 /* Main Game Container */
 .game1 {
   max-width: 800px;
-  margin: 50px auto;
+  margin:auto;
   padding: 20px;
-  background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   position: relative;
+}
+
+#loginButton, #signupLink,  .theme-button, .submit-button, .reset-button, .home-button, .demo-button{
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  font-weight: 600;
+  color: #fff;
+  font-size: 14px;
+  padding: 8px 24px;
+  border-radius: 50px;
+  background-image: linear-gradient(180deg,#7c8aff,#812acd);
+  box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
+  transition: all .2s ease-out;
+}
+
+.submit-button, #signupLink{
+  background-image: linear-gradient(180deg,#0b541a,#89c0a7);
+}
+.reset-button{
+  background-image: linear-gradient(180deg,#75778c,#cd732a);
+}
+.home-button{
+  background-image: linear-gradient(180deg,#3a3c4b,#cd2a50);
+}
+.demo-button{
+  background-image: linear-gradient(180deg,#5a3366,#d56781);
 }
 
 .game-header {
@@ -119,7 +145,7 @@ body {
   margin-top: 20px;
 }
 
-button {
+/* button {
   padding: 10px 25px;
   border: none;
   border-radius: 25px;
@@ -129,17 +155,26 @@ button {
   font-size: 16px;
   transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
+} */
 
-button:hover {
+/* button:hover {
   background-color: #333333;
   transform: translateY(-3px);
-}
+} */
 
 button:active {
   transform: translateY(1px);
 }
-
+.hint-btn{
+  padding: 5px 15px;
+  border: none;
+  border-radius: 25px;
+  background-color: #675f5f;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
 .reset-button, .home-button {
   display: flex;
   align-items: center;
@@ -148,13 +183,22 @@ button:active {
 
 /* DarkTheme.css */
 .dark-theme {
-  background-color: #121212;
+  background-color: #625656da;
   color: #ffffff;
+}
+
+.dark-theme .game-header{
+  color: white !important;
+}
+
+.dark-theme .target{
+  background-color: rgb(49, 46, 46);
+  color: white !important;
 }
 
 /* LightTheme.css */
 .light-theme {
-  background-color: #ffffff;
+  background-color: rgba(225, 223, 206, 0.865);
   color: #000000;
 }
 
