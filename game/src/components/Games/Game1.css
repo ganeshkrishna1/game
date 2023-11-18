@@ -187,6 +187,10 @@ button:active {
   color: #ffffff;
 }
 
+.dark-theme .hint-display{
+  color: black;
+}
+
 .dark-theme .game-header{
   color: white !important;
 }
