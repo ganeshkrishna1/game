@@ -396,7 +396,7 @@ function Game1() {
         {" "}
         Dark Mode{" "}
       </button>
-      <h1 className="game-header">Drag and Drop Game - {difficulty} Level</h1>
+      <h1 className="game-header"> SIX DEGREES Game - {difficulty} Level</h1>
       <div className="game-container">
         {gameEnded ? (
           <div className="game-completed">
