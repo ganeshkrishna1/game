@@ -440,9 +440,7 @@ function Game1() {
             </div>
 
             {answerMessage && (
-              <div className="answer-message">
-                <p>{answerMessage}</p>
-              </div>
+              <div className={answerMessage}>{answerMessage}</div>
             )}
             {showFeedbackModal && (
               <div className="feedback-modal">
@@ -460,45 +458,49 @@ function Game1() {
             )}
           </div>
         )}
-        <div className="images">
-          {questions[difficulty].map((question, index) => (
-            <div
-              key={index}
-              className="image-container1"
-              draggable
-              onDragStart={(e) => handleDragStart(e, question.correctAnswer)}
-            >
-              <img
-                src={question.image}
-                alt={question.correctAnswer}
-                className={
-                  draggedItem === question.correctAnswer ? "dragging" : ""
-                }
-              />
-            </div>
-          ))}
+        {!gameEnded && (
+          <div className="images">
+            {questions[difficulty].map((question, index) => (
+              <div
+                key={index}
+                className="image-container1"
+                draggable
+                onDragStart={(e) => handleDragStart(e, question.correctAnswer)}
+              >
+                <img
+                  src={question.image}
+                  alt={question.correctAnswer}
+                  className={
+                    draggedItem === question.correctAnswer ? "dragging" : ""
+                  }
+                />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      {!gameEnded && (
+        <div
+          className={`target ${
+            questionAnswered ||
+            draggedItem !==
+              questions[difficulty][shuffledQuestionIndices[currentQuestion]]
+                ?.correctAnswer
+              ? "disabled"
+              : ""
+          }`}
+          onDragOver={handleDragOver}
+          onDrop={(e) =>
+            handleDrop(
+              e,
+              questions[difficulty][shuffledQuestionIndices[currentQuestion]]
+                ?.correctAnswer
+            )
+          }
+        >
+          Drop Here
         </div>
-      </div>
-      <div
-        className={`target ${
-          questionAnswered ||
-          draggedItem !==
-            questions[difficulty][shuffledQuestionIndices[currentQuestion]]
-              ?.correctAnswer
-            ? "disabled"
-            : ""
-        }`}
-        onDragOver={handleDragOver}
-        onDrop={(e) =>
-          handleDrop(
-            e,
-            questions[difficulty][shuffledQuestionIndices[currentQuestion]]
-              ?.correctAnswer
-          )
-        }
-      >
-        Drop Here
-      </div>
+      )}
 
       <div className="game-buttons">
         <button className="submit-button" onClick={handleNext}>

@@ -16,4 +16,5 @@ code {
   background-image: url("https://img.freepik.com/free-vector/abstract-background_79603-31.jpg?w=900&t=st=1700203404~exp=1700204004~hmac=9cebf4bc2ddd5b496289e843445a52ab0e3103aaccf3217e95c738551b9a8e32");
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: 100vh;
 }
