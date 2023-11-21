@@ -81,7 +81,7 @@ function Signup() {
   return (
     <>
       <div className="d-flex justify-content-center align-items-center text-white SignupPage">
-        <div className=" d-flex flex-column align-items-center rounded w-25 signupForm">
+        <div className=" d-flex flex-column align-items-center rounded w-25 mt-5 signupForm">
           <strong className=" my-3">Register</strong>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
