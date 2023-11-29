@@ -17,7 +17,7 @@ body {
   position: relative;
 }
 
-#loginButton, #signupLink,  .theme-button, .submit-button, .reset-button, .home-button, .demo-button{
+#loginButton, #signupLink,  .theme-button, .submit-button, .reset-button, .home-button, .demo-button, .feedback-button{
   outline: 0;
   border: 0;
   cursor: pointer;
@@ -42,6 +42,9 @@ body {
 }
 .demo-button{
   background-image: linear-gradient(180deg,#5a3366,#d56781);
+}
+.feedback-button{
+  background-image: linear-gradient(180deg,#75778c,#070707);
 }
 
 .game-header {
@@ -175,7 +178,7 @@ button:active {
   transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
-.reset-button, .home-button {
+.reset-button, .home-button, .feedback-button {
   display: flex;
   align-items: center;
   gap: 5px;

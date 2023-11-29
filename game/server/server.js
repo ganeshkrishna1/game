@@ -129,12 +129,9 @@ app.get('/game1', (req, res) => {
 
 
 app.post('/submitFeedback', (req, res) => {
-  const { userId, rating, comments } = req.body;
-  if (!userId || rating < 1 || rating > 5) {
-      return res.status(400).json({ error: 'Invalid feedback data' });
-  }
-  const insertQuery = 'INSERT INTO feedback (userId, rating, comments) VALUES (?, ?, ?)';
-  const values = [userId, rating, comments];
+  const {  rating, comments } = req.body;
+  const insertQuery = 'INSERT INTO feedback ( rating, comments) VALUES (?, ?)';
+  const values = [ rating, comments];
   con.query(insertQuery, values, (error, results) => {
       if (error) {
           console.error('Error inserting feedback into the database:', error);

@@ -16,10 +16,12 @@ const Dashboard = () => {
     title: {
       text: "Game Statistics",
     },
+    axisY: {
+      title: "Score",
+    },
     data: [
       {
-        type: "pie",
-        startAngle: -90,
+        type: "line", // Change type to line
         dataPoints: [],
       },
     ],
@@ -51,12 +53,12 @@ const Dashboard = () => {
           label: `${game.game1_difficulty} - ${game.game1_time}sec`,
         }));
 
-        // Update the options object with dynamic dataPoints
+        // Update the options object with dynamic dataPoints and change type to line
         const updatedOptions = {
           ...options,
           data: [
             {
-              ...options.data[0],
+              type: "line",
               dataPoints: newDataPoints,
             },
           ],
@@ -81,8 +83,7 @@ const Dashboard = () => {
           </center>
         </div>
       )}
-    
-        
+
       <CanvasJSChart
         options={options}
         containerProps={{

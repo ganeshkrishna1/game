@@ -515,6 +515,12 @@ function Game1() {
         >
           <FontAwesomeIcon icon="sync" /> Reset
         </button>
+        <button
+          className="feedback-button"
+          onClick={() => navigate('/feedback')}
+        >
+          <FontAwesomeIcon icon="sync" /> Feedback
+        </button>
 
         {/* Home Button with useNavigate */}
         <button className="home-button" onClick={() => navigate("/home")}>

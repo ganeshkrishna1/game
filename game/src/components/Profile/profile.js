@@ -21,8 +21,9 @@ const Profile = () => {
   }, []);
 
   return (
+    <div> <Navbar />
     <div className="profile">
-      <Navbar />
+     
       {userProfile ? (
         <div className="profile__main">
           <div className="profile__info">Player Info</div>
@@ -41,7 +42,7 @@ const Profile = () => {
       ) : (
         <p>Loading user profile...</p>
       )}
-    </div>
+    </div></div>
   );
 };
 
