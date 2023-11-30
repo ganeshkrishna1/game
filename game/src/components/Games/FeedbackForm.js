@@ -28,7 +28,7 @@ function FeedbackForm() {
   // Log the data before making the POST request
   console.log('Feedback data to be sent:', feedbackData);
     axios
-      .post('http://localhost:8081/submitFeedback', feedbackData)
+      .post('https://six-degree-game.onrender.com/submitFeedback', feedbackData)
       .then((response) => {
         console.log('Feedback submitted successfully');
         navigate('/home');

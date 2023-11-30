@@ -10,7 +10,7 @@ const Navbar = () => {
     const userId = localStorage.getItem('userId');
 
     if (userId) {
-      axios.get(`http://localhost:8081/users/${userId}`)
+      axios.get(`https://six-degree-game.onrender.com/users/${userId}`)
         .then((response) => {
           setUser(response.data);
         })

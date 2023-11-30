@@ -375,7 +375,7 @@ function Game1() {
       };
       // Make a POST request to your backend API to store the game data
       axios
-        .post("http://localhost:8081/storeGameData", gameData)
+        .post("https://six-degree-game.onrender.com/storeGameData", gameData)
         .then((response) => {
           console.log("Game data stored successfully");
         })

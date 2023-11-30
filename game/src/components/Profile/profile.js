@@ -10,7 +10,7 @@ const Profile = () => {
 
     if (userId) {
       axios
-        .get(`http://localhost:8081/users/${userId}`)
+        .get(`https://six-degree-game.onrender.com/users/${userId}`)
         .then((response) => {
           setUserProfile(response.data);
         })

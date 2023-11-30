@@ -61,7 +61,7 @@ function Signup() {
 
   const registerUser = () => {
     axios
-      .post("http://localhost:8081/signup", { name, username, email, password })
+      .post("https://six-degree-game.onrender.com/signup", { name, username, email, password })
       .then((res) => {
         navigate("/login");
       })

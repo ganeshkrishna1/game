@@ -25,13 +25,13 @@ function HomePage() {
     return (
       <Carousel showArrows={true}>
         <div>
-          <img src="http://localhost:8081/sample.jpg" alt="Image 1" />
+          <img src="https://six-degree-game.onrender.com/sample.jpg" alt="Image 1" />
         </div>
         <div>
-          <img src="http://localhost:8081/sample2.jpg" alt="Image 2" />
+          <img src="https://six-degree-game.onrender.com/sample2.jpg" alt="Image 2" />
         </div>
         <div>
-          <img src="http://localhost:8081/sample3.jpg" alt="Image 3" />
+          <img src="https://six-degree-game.onrender.com/sample3.jpg" alt="Image 3" />
         </div>
         {/* Add more images as needed */}
       </Carousel>

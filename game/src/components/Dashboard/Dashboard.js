@@ -32,7 +32,7 @@ const Dashboard = () => {
     const userId = localStorage.getItem("userId");
     if (userId) {
       axios
-        .get(`http://localhost:8081/users/${userId}`)
+        .get(`https://six-degree-game.onrender.com/users/${userId}`)
         .then((response) => {
           setUser(response.data);
         })
@@ -43,7 +43,7 @@ const Dashboard = () => {
 
     // Fetch game statistics from the game1 table
     axios
-      .get(`http://localhost:8081/game1?userId=${userId}`)
+      .get(`https://six-degree-game.onrender.com/game1?userId=${userId}`)
       .then((response) => {
         setGameStats(response.data);
 

@@ -34,7 +34,7 @@ function Login() {
 
   const authenticateUser = () => {
     axios
-      .post("http://localhost:8081/login", { email, password })
+      .post("https://six-degree-game.onrender.com/login", { email, password })
       .then((res) => {
         if (res.data.status === "Success") {
           const userId = res.data.userId;
