@@ -5,8 +5,9 @@ import cookieParser from 'cookie-parser';
 import bodyParser from "body-parser";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-
+import dotenv from 'dotenv';
 // Determine the directory name
+dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const app = express();
@@ -24,10 +25,10 @@ app.get("/video", (req, res) => {
 
 // Database connection setup
 const con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "game",
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
 });
 
 con.connect(err => {
@@ -144,6 +145,7 @@ app.post('/submitFeedback', (req, res) => {
 
 
 // Start the server
-app.listen(8081, () => {
-    console.log("Server running on port 8081");
+app.listen(process.env.SERVER_PORT, () => {
+  console.log("Running");
 });
+
