@@ -110,15 +110,18 @@ app.get('/users/:userId', (req, res) => {
   //     }
   //   });
   // });
-  app.post('/storeGameData', (req, res) => {
-    const sql = "INSERT INTO Game1 (`game1_difficulty`,`game1_score`,`game1_time`,`userId`) VALUES (?)";
+  // const sql = "INSERT INTO Game1 (`game1_difficulty`, `game1_score`, `game1_time`, `userId`) VALUES (?, ?, ?, ?)";
+
+app.post('/storeGameData', (req, res) => {
+    const sql = "INSERT INTO Game1 (`game1_difficulty`, `game1_score`, `game1_time`, `userId`) VALUES (?, ?, ?, ?)";
     const values = [
-        req.body.game1_difficulty,
-        req.body.game1_score,
-        req.body.game1_time,
+        req.body.difficulty, // Corrected key
+        req.body.score, // Corrected key
+        req.body.time, // Corrected key
         req.body.userId
     ];
-    con.query(sql, [values], (err, data) => {
+    
+    con.query(sql, values, (err, data) => {
         if (err) {
             console.error("Database insert error:", err);
             return res.status(500).json({ status: 'Error', message: 'Error in database insertion' });
