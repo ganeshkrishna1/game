@@ -136,8 +136,9 @@ app.get('/game1', (req, res) => {
   if (!userId) {
     return res.status(400).json({ error: 'User ID is required.' });
   }
-  const query = 'SELECT game1_difficulty, game1_time, game1_score FROM game1 WHERE userId = ?';
-  con.query(query, [userId], (err, results) => {
+  const query = 'SELECT game1_difficulty, game1_time, game1_score FROM game1 WHERE userId = 6';
+  // , [userId]
+  con.query(query, (err, results) => {
     if (err) {
       console.error('Error fetching game statistics:', err);
       return res.status(500).json({ error: 'Internal server error' });
