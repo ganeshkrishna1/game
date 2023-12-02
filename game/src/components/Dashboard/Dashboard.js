@@ -43,7 +43,7 @@ const Dashboard = () => {
 
     // Fetch game statistics from the game1 table
     axios
-      .get(`https://six-degree-game.onrender.com/game1?userId=6}`)
+      .get(`https://six-degree-game.onrender.com/game1?userId=${userId}`)
       .then((response) => {
         setGameStats(response.data);
 
