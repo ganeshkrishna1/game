@@ -132,10 +132,10 @@ app.post('/storeGameData', (req, res) => {
 
 
 app.get('/game1', (req, res) => {
-  const userId = req.query.userId;
-  if (!userId) {
-    return res.status(400).json({ error: 'User ID is required.' });
-  }
+  // const userId = req.query.userId;
+  // if (!userId) {
+  //   return res.status(400).json({ error: 'User ID is required.' });
+  // }
   const query = 'SELECT game1_difficulty, game1_time, game1_score FROM game1 WHERE userId = 6';
   // , [userId]
   con.query(query, (err, results) => {
