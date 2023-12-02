@@ -96,21 +96,36 @@ app.get('/users/:userId', (req, res) => {
   });
 
 
+  // app.post('/storeGameData', (req, res) => {
+  //   const { difficulty, score, time, userId } = req.body;
+  //   const insertquery = 'INSERT INTO Game1 (game1_difficulty, game1_score, game1_time, userId) VALUES (?, ?, ?, ?)';
+  //   const values = [difficulty, score, time, userId];
+  //   con.query(insertquery, values, (error, results) => {
+  //     if (error) {
+  //       console.error('Error storing game data:', error);
+  //       res.status(500).send('Error storing game data');
+  //     } else {
+  //       console.log('Game data stored successfully');
+  //       res.status(200).send('Game data stored successfully');
+  //     }
+  //   });
+  // });
   app.post('/storeGameData', (req, res) => {
-    const { difficulty, score, time, userId } = req.body;
-    const insertquery = 'INSERT INTO Game1 (game1_difficulty, game1_score, game1_time, userId) VALUES (?, ?, ?, ?)';
-    const values = [difficulty, score, time, userId];
-    con.query(insertquery, values, (error, results) => {
-      if (error) {
-        console.error('Error storing game data:', error);
-        res.status(500).send('Error storing game data');
-      } else {
-        console.log('Game data stored successfully');
-        res.status(200).send('Game data stored successfully');
-      }
+    const sql = "INSERT INTO Game1 (`game1_difficulty`,`game1_score`,`game1_time`,`userId`) VALUES (?)";
+    const values = [
+        req.body.game1_difficulty,
+        req.body.game1_score,
+        req.body.game1_time,
+        req.body.userId
+    ];
+    con.query(sql, [values], (err, data) => {
+        if (err) {
+            console.error("Database insert error:", err);
+            return res.status(500).json({ status: 'Error', message: 'Error in database insertion' });
+        }
+        return res.json({ status: 'Success', data });
     });
-  });
-
+});
 
 
 app.get('/game1', (req, res) => {
